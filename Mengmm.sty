@@ -1,0 +1,81 @@
+% Mengmm.sty - LaTeX style file
+% 怎么个性化呢？问 AI + 上网搜吧。
+\mode<presentation> % 指定当前为 Beamer 的 presentation 模式，用于制作幻灯片
+
+\ProcessOptionsBeamer % 处理传递给 Beamer 的选项
+
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars} % 使用 smoothbars 外层主题，并设置页脚显示作者、机构和标题，不显示子章节
+\makeatletter % 开启 @ 特殊字符的使用，用于内部命令定义
+\newcommand{\frameofframes}{/} % 定义页码分隔符，默认为 "/"
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}} % 定义命令，用于自定义页码分隔符
+\setbeamertemplate{footline} % 自定义页脚模板
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot} % 页脚的顶部分隔线
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,% 页脚中第一部分，显示作者和机构信息（中间又加了个小节名）
+      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+      \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}% 显示作者
+      \hfill% 等间距
+      \ifnum\value{subsection}>0 % 仅当当前小节编号存在时
+        \usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}%
+        \thesubsection. \insertsubsectionhead
+      \fi
+      \hfill% 等间距
+      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}% 显示机构
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,% 页脚中第二部分，显示标题和页码
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      {\usebeamerfont{title in head/foot}\insertshorttitle}% 显示标题
+      \hfill% 等间距
+      \ifnum\value{subsubsection}>0 % 仅当当前小节编号存在时
+        \usebeamerfont{title in head/foot}\usebeamercolor[fg]{title in head/foot}%
+        \alph{subsubsection}. \insertsubsubsectionhead
+      \fi
+      \hfill% 等间距
+      {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber} % 显示当前页码/总页码
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot} % 页脚的底部分隔线
+    \end{beamercolorbox}
+  }
+\makeatother % 结束 @ 特殊字符的使用
+
+\useinnertheme{circles} % 使用内层主题 circles
+
+%\useoutertheme{default} %（可选）使用默认外层主题
+%\useinnertheme[shadow=true]{rounded} %（可选）使用带阴影效果的 rounded 内层主题
+
+\xdefinecolor{Mengmm}{rgb}{0.098,0.098,0.439} % 定义颜色 Mengmm，对应 RGB 值 #82318E
+\setbeamercolor{footline}{bg=Mengmm} % 设置页脚背景颜色为 Mengmm
+\setbeamercolor{frametitle}{bg=Mengmm,fg=white} % 设置帧标题背景颜色为 Mengmm，字体颜色为白色
+\setbeamercolor{title}{bg=Mengmm} % 设置标题背景颜色为 Mengmm
+\setbeamerfont{frametitle}{size=\large} % 设置帧标题字体大小为 large
+\setbeamertemplate{navigation symbols}{} %（可选）移除导航符号（内框右下角的前后页等导航）
+\setbeamertemplate{bibliography item}[text] % 设置参考文献项目符号为文本样式
+\setbeamertemplate{caption}[numbered] % 设置图表标题为带编号样式
+
+\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg} % 设置主要配色
+\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black} % 设置次要配色
+\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black} % 设置三级配色
+\setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black} % 设置四级配色
+%\setbeamercolor*{sidebar}{use=structure,bg=structure.fg} %（可选）设置侧边栏配色
+\setbeamercolor{titlelike}{parent=palette primary} % 设置标题风格与主要配色一致
+
+\setbeamercolor{block title}{bg=Mengmm,fg=white} % 设置块标题背景为 Mengmm，字体为白色
+\setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=Mengmm} % 设置示例块标题背景为白色，字体为 Mengmm
+\setbeamercolor{fine separation line}{} %（可选）设置分隔线颜色
+\setbeamercolor{item projected}{fg=white} % 设置项目符号的前景色为白色
+\setbeamercolor{sidebar}{bg=Mengmm} % 设置侧边栏背景颜色为 Mengmm
+\setbeamercolor{structure}{fg=Mengmm} % 设置结构颜色为 Mengmm
+
+%\AtBeginSection[]{ % 每节开始时插入目录页
+%	\begin{frame}
+%		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+%	\end{frame}
+%}
+%\AtBeginSubsection[]{ % 每小节开始时插入目录页
+%	\begin{frame}
+%		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+%	\end{frame}
+%}
+
+\mode<all> % 切换到所有模式
