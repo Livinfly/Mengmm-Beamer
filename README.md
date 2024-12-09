@@ -11,3 +11,7 @@ slide 的示例内容和来源基本一致。
 beamer 官方使用文档 pdf。
 
 new 是全新的，记得和 **\*.sty** 放在一起，这是主题配置文件，可以改名，可以再自己魔改。
+
+[OverLeaf 查看 new](https://cn.overleaf.com/read/rjsqhyxtvtcr#8caec8)
+
+在 **OverLeaf** 上使用，请把编译器改成 XeLaTeX
